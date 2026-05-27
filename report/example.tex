@@ -1,0 +1,772 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{vietnam}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm, amssymb,latexsym,amscd,amsfonts,enumerate}
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage[left=3.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry} 
+\setlength{\parindent}{0pt}
+\usepackage{graphicx} 
+\usepackage{xcolor}
+\usepackage{tikz} 
+\usepackage{scrextend}
+\changefontsizes{14pt}
+\usetikzlibrary{calc}
+
+\usepackage[top=3.5cm, bottom=3.0cm, left=3.5cm, right=2.0cm]{geometry} % căn lề theo quy chuẩn KLTN
+
+\usepackage{color, fancyhdr, graphicx, wrapfig}
+
+\usepackage[unicode]{hyperref}
+\usepackage{newunicodechar}
+\newunicodechar{−}{-}
+
+\newtheorem{dn}{Định nghĩa}[section]
+
+\newtheorem{tc}[dn]{Tính chất}
+
+\newtheorem{dl}[dn]{Định lí}
+
+\newtheorem{md}[dn]{Mệnh đề}
+
+\newtheorem{bd}[dn]{Bổ đề}
+
+\newtheorem{hq}[dn]{Hệ quả}
+
+\newtheorem{nx}[dn]{Nhận xét}
+
+\newtheorem{vd}{Ví dụ}
+
+\pagenumbering{roman}\pagestyle{plain}
+
+\pagestyle{plain}
+
+%\lhead{\it Khóa luận tốt nghiệp}
+
+%\rhead{\it Phương trình đạo hàm riêng phi tuyến}
+
+%\lfoot{\it Vũ Thị A}
+
+%\rfoot{\it K59CLC Toán ĐHSPHN}
+
+%\renewcommand{\headrulewidth}{1,2pt}
+
+%\renewcommand{\footrulewidth}{1,2pt} % Cái này là tiêu đề chạy
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{tikzpicture}[remember picture,overlay,inner sep=0,outer sep=0]
+     \draw[blue!70!black,line width=4pt] ([xshift=-1.5cm,yshift=-2cm]current page.north east) coordinate (A)--([xshift=1.5cm,yshift=-2cm]current page.north west) coordinate(B)--([xshift=1.5cm,yshift=2cm]current page.south west) coordinate (C)--([xshift=-1.5cm,yshift=2cm]current page.south east) coordinate(D)--cycle;
+
+     \draw ([yshift=0.5cm,xshift=-0.5cm]A)-- ([yshift=0.5cm,xshift=0.5cm]B)--
+     ([yshift=-0.5cm,xshift=0.5cm]B) --([yshift=-0.5cm,xshift=-0.5cm]B)--([yshift=0.5cm,xshift=-0.5cm]C)--([yshift=0.5cm,xshift=0.5cm]C)--([yshift=-0.5cm,xshift=0.5cm]C)-- ([yshift=-0.5cm,xshift=-0.5cm]D)--([yshift=0.5cm,xshift=-0.5cm]D)--([yshift=0.5cm,xshift=0.5cm]D)--([yshift=-0.5cm,xshift=0.5cm]A)--([yshift=-0.5cm,xshift=-0.5cm]A)--([yshift=0.5cm,xshift=-0.5cm]A);
+
+
+     \draw ([yshift=-0.3cm,xshift=0.3cm]A)-- ([yshift=-0.3cm,xshift=-0.3cm]B)--
+     ([yshift=0.3cm,xshift=-0.3cm]B) --([yshift=0.3cm,xshift=0.3cm]B)--([yshift=-0.3cm,xshift=0.3cm]C)--([yshift=-0.3cm,xshift=-0.3cm]C)--([yshift=0.3cm,xshift=-0.3cm]C)-- ([yshift=0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=-0.3cm]D)--([yshift=0.3cm,xshift=-0.3cm]A)--([yshift=0.3cm,xshift=0.3cm]A)--([yshift=-0.3cm,xshift=0.3cm]A);
+
+   \end{tikzpicture}
+\begin{center}
+    \vspace{7pt}
+    
+    \textbf{TRƯỜNG ĐẠI HỌC CÔNG NGHỆ}
+    
+    \textbf{ĐẠI HỌC QUỐC GIA HÀ NỘI}
+    
+    \vspace{7pt}
+    \textbf{KHOA CÔNG NGHỆ THÔNG TIN}
+\end{center}
+\vspace{10pt}
+\begin{center}
+    \includegraphics[scale=0.3]{uet.png}
+    
+    \vspace{10pt}
+    \fontsize{18pt}{17pt}\selectfont 
+    \textbf{BÁO CÁO MÔN HỌC} 
+    
+    \vspace{7pt}
+    \textbf{TIN SINH HỌC ỨNG DỤNG}
+\end{center}
+\begin{flushleft}
+    \fontsize{14pt}{17pt}\selectfont  
+    \textbf{\textsl{ĐỀ TÀI}}
+\end{flushleft}
+\begin{center}
+    \fontsize{18pt}{17pt}\selectfont 
+    \textbf{\textrm{ỨNG DỤNG GIẢI THUẬT DI TRUYỀN TRONG
+BÀI TOÁN TỐI ƯU CÂY PHÂN LOÀI
+}}
+\end{center}
+
+\vspace{15pt}
+\textbf{GV hướng dẫn: Đỗ Đức Đông}
+
+
+
+\vspace{10pt}
+\textbf{Nhóm sinh viên thực hiện:}
+
+\begin{tabbing}
+\hspace{8cm}\=\hspace{3cm}\=\hspace{3cm} \kill
+{\it \textbf{Họ và tên}}\>{\it \textbf{MSSV}}\\
+\begin{bfseries}Bùi Minh Hoàng\end{bfseries}\> \begin{bfseries}23021557\end{bfseries}\\
+\begin{bfseries}Đào Phương Nam\end{bfseries}\> \begin{bfseries}23021639\end{bfseries}\\
+
+\end{tabbing}
+\vspace{10pt}
+\begin{center}
+    \textbf{Hà Nội, 2025}
+\end{center}
+\end{titlepage}
+
+\chapter*{Lời nói đầu}
+
+\addcontentsline{toc}{chapter}{{\bf Lời nói đầu}\rm} %Đưa lời nói đầu vào mục lục
+
+Trong suốt chiều dài lịch sử phát triển của khoa học sự sống, việc tìm hiểu nguồn gốc và quá trình tiến hóa của các loài sinh vật luôn là một trong những câu hỏi lớn nhất thách thức trí tuệ nhân loại. Kể từ khi Charles Darwin công bố thuyết tiến hóa, và đặc biệt là sự ra đời của công nghệ giải trình tự gen thế hệ mới (Next-Generation Sequencing - NGS), chúng ta đã có trong tay một khối lượng dữ liệu khổng lồ về mã di truyền DNA. Tuy nhiên, việc chuyển hóa khối dữ liệu thô khổng lồ đó thành tri thức, cụ thể là việc dựng lại cây phân loài (Phylogenetic Tree) để mô tả chính xác quan hệ huyết thống giữa các loài, lại là một bài toán vô cùng nan giải.
+
+Thực tế đã chứng minh, bài toán dựng cây phân loài, đặc biệt là theo tiêu chuẩn Tối đa hóa độ hợp lý (Maximum Likelihood), thuộc lớp bài toán NP-khó (NP-Hard). Khi số lượng loài cần khảo sát tăng lên, không gian tìm kiếm các cấu trúc cây khả dĩ sẽ bùng nổ theo cấp số nhân (Combinatorial Explosion). Với hàng chục hay hàng trăm loài, số lượng cây có thể tồn tại vượt quá số lượng nguyên tử trong vũ trụ, khiến cho các phương pháp duyệt toàn bộ (Exhaustive Search) trở nên bất khả thi ngay cả với các siêu máy tính mạnh nhất hiện nay.
+
+Đứng trước thách thức đó, các phương pháp tối ưu hóa heuristic, đặc biệt là các giải thuật lấy cảm hứng từ tự nhiên (Nature-inspired algorithms), đã nổi lên như một hướng tiếp cận đầy tiềm năng. Trong số đó, Giải thuật Di truyền (Genetic Algorithm - GA) – mô phỏng quá trình chọn lọc tự nhiên với các cơ chế lai ghép, đột biến và sinh tồn của kẻ mạnh nhất – được xem là một công cụ mạnh mẽ để tìm kiếm lời giải tối ưu trong không gian tìm kiếm rộng lớn và phức tạp.
+
+Báo cáo nghiên cứu với đề tài \textbf{"Ứng dụng giải thuật di truyền trong bài toán tối ưu cây phân loài"} được thực hiện nhằm mục đích tìm hiểu sâu sắc cơ chế hoạt động của giải thuật di truyền, đồng thời vận dụng linh hoạt giải thuật này để giải quyết bài toán dựng cây phân loài, hướng tới việc cân bằng giữa độ chính xác của mô hình và chi phí tính toán.
+
+\vspace{0.5cm}
+
+Trong quá trình thực hiện đề tài này, chúng tôi xin gửi lời cảm ơn chân thành đến \textbf{Giảng viên hướng dẫn: [Thầy Đỗ Đức Đông]} đã tận tình chỉ bảo, định hướng nghiên cứu và giúp đỡ tôi tháo gỡ những vướng mắc về mặt thuật toán. Chúng tôi cũng xin cảm ơn các bạn bè đã cùng thảo luận, chia sẻ tài liệu và đóng góp ý kiến để báo cáo này được hoàn thiện hơn.
+
+Dù đã nỗ lực hết mình, nhưng do giới hạn về mặt thời gian cũng như kiến thức còn nhiều hạn chế, báo cáo chắc chắn không tránh khỏi những thiếu sót. Chúng tôi rất mong nhận được sự thông cảm và những ý kiến đóng góp quý báu từ Thầy và các bạn.
+
+
+\begin{tabular}{l l }
+
+%$\|.\|$ & Chuẩn trong không gian Euclid.\\
+
+%$||.||_{p}$ & Chuẩn trong không gian $L_{p}$.\\
+
+%OTT & Ốm tương tư.\\
+
+%BTBD & Bạn thật bá đạo!\\
+
+%etc…
+
+\end{tabular}
+
+\tableofcontents % Lệnh mục lục
+
+\chapter{Một số kiến thức chuẩn bị} % Chương 1
+
+\pagenumbering{arabic}            % Danh lai trang
+
+\section{Giới thiệu về bài toán phân loài}
+
+Cây phân loài là một cấu trúc cây thể hiện mối quan hệ tiến hóa giữa các loài sinh vật hoặc nhóm sinh vật. Cây phân loài minh họa các mối quan hệ huyết thống, nguồn gốc và sự phát triển theo thời gian của các sinh vật, giống như phả hệ trong một gia đình. 
+
+\begin{figure}[ht]
+
+\begin{center}
+
+\includegraphics[scale=1.25]{PhylogeneticTree.png}\\
+
+\end{center}
+
+\caption{ví dụ về cây phân loài}
+
+\end{figure}
+
+\newpage 
+Cây phân loài là công cụ thiết yếu trong nhiều lĩnh vực khoa học và ứng dụng thực tiễn. Nó cung cấp cơ sở để xác định và phân chia các loài dựa trên nguồn gốc tiến hóa thay vì chỉ dựa vào hình thái. Điều này giúp cải tiến hệ thống phân loài theo hướng phản ánh đúng lịch sử tự nhiên. Ví dụ, các nghiên cứu về sự tiến hóa SARS-CoV-2 đã sử dụng cây phát sinh loài để xác định các biến thể, nguồn gốc và con đường lây lan toàn cầu. Từ đó, các biện pháp kiểm soát dịch bệnh và phát triển vaccine. 
+
+Mối quan hệ tiến hóa giữa các loài sinh vật thường được biểu diễn bởi một cây nhị phân với cấu trúc như sau:
+
+- Mỗi nút (đỉnh) lá của cây sẽ biểu diễn một loài sinh vật hiện tại.
+
+- Mỗi nút bên trong của cây biểu diễn cho một loài sinh vật tổ tiên. Thông thường,
+chúng ta không có thông tin về các loài sinh vật tổ tiên này. 
+
+- Một cạnh của cây sẽ nối hai nút của cây và biểu diễn mối quan hệ trực tiếp giữa hai loài sinh vật.
+
+- Độ dài của cạnh nối hai loài sinh vật trên cây cho biết khoản cách tiến hóa giữa chúng. Khoảng cách này có thể được biểu diễn bằng thời gian, hay số lượng biến đổi nucleotide giữa hai trình tự DNA/amino acid được sử dung để so sánh 2 loài.
+
+Thông thường, ta không biết về tổ tiên chung cho nên ta không thể xác định được gốc của cây. Do đó, cây phân loài thường được biểu diễn bằng một cây nhị phân không gốc như hình 1.2. 
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=.75]{unrootedtree.png}\\
+\end{center}
+\caption{Cây phân loài không gốc của 4 loài sinh vật}
+\end{figure}
+
+\newpage
+Bài toán xây dựng cây phân loài: Trong báo cáo này, chúng ta tập trung mối quan hệ giữa các loài sinh vật dựa vào phân tích mối quan hệ giữa các trình tự DNA của chúng. Bài toán xây dựng cây phân loài được phát biểu ngắn gọn như sau:
+
+- Dữ liệu vào : Một đa sắp hàng \(A = (X_1, X_2, ..., X_n)\) gồm \(n\) trình tự DNA của \(n\) sinh vật. Sinh vật thứ \(i\) được biểu diễn bởi trình tự \(X_i\)
+
+- Bài toán: Xây dựng cây phân loài biểu diễn mối quan hệ giữa các loài sinh vật trên dựa vào phân tích sự giống nhau và khác nhau giữa các trình tự DNA của chúng.
+
+- Dữ liệu ra: Một cây nhị phân không gốc biểu diễn mối quan hệ của n sinh vật. Mỗi sinh vật được biểu diễn ở một nút lá của cây. Độ dài các cạnh của cây biểu diễn số lượng biến đổi nucleotide giữa các nút của cây. Hình 1.3 mô tả bài toán xây dựng cây phân loài cho 4 loài là người, tinh tinh, khỉ đột, khỉ nâu. 
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{input_to_output.png}\\
+\end{center}
+\caption{Xây dựng cây phân loài cho 4 sinh vật từ đa sắp hàng các trình tự DNA của chúng}
+\end{figure}
+
+\newpage
+
+\section{Tiêu chuẩn đánh giá cây: Tiêu chuẩn hợp lý nhất}
+\subsection{Mô hình tiến hóa}
+
+\subsubsection{Mô hình GTR}
+Các mô hình tiến hóa trình tự thường được sử dụng trong phân tích phát sinh loài theo tiêu chuẩn hợp lý nhất được phân loại là mô hình Markov thuận nghịch theo thời gian; chúng không được định hướng theo thời gian, và xác suất của bất kỳ sự thay thế nào chỉ phụ thuộc vào trạng thái hiện tại. Các mô hình đã được phát triển cho nhiều loại trình tự khác nhau, chẳng hạn như trình tự nucleotide, axit amin và codon. Báo cáo hiện tại chúng ta sẽ chỉ đề cập đến các mô hình dựa trên nucleotide. Mô hình nucleotide mà ta tập trung vào là mô hình GTR (General Time-Reversible). Các tham số của mô hình GTR
+bao gồm tần số cân bằng của bốn nucleotide \((\pi_A, \pi_C, \pi_G, \pi_T)\) và sáu tham số biểu thị tốc độ thay thế tương đối giữa mỗi cặp nucleotide\((r_{AC}, r_{AG}, r_{AT}, r_{CG}, r_{CT}, r_{GT})\). Lưu ý rằng mặc dù có mười tham số, nhưng chỉ có tám tham số được coi là tự do vì tổng tần số cân bằng phải bằng một và tốc độ f thường được cố định để đảm bảo khả năng nhận dạng của các tốc độ tương đối còn lại. Các tham số này được sử dụng để xác định ma trận Q, trong đó Qij biểu thị tốc độ thay thế tức thời từ nucleotide i sang nucleotide j. Sử dụng quy ước sắp xếp các bazơ theo thứ tự bảng chữ cái (A, C, G, T):
+
+\[
+Q =
+\begin{pmatrix}
+- & \frac{1}{\mu} r_{AC} \pi_C & \frac{1}{\mu} r_{AG} \pi_G & \frac{1}{\mu} r_{AT} \pi_T \\
+\frac{1}{\mu} r_{CA} \pi_A & - & \frac{1}{\mu} r_{CG} \pi_G
+& \frac{1}{\mu} r_{CT} \pi_T \\
+\frac{1}{\mu} r_{GA} \pi_A & \frac{1}{\mu} r_{GC} \pi_C & - & \frac{1}{\mu} r_{GT} \pi_T \\
+\frac{1}{\mu} r_{TA} \pi_A & \frac{1}{\mu} r_{TC} \pi_C & \frac{1}{\mu} r_{TG} \pi_G & -
+\end{pmatrix}
+\]
+
+
+
+Các phần tử đường chéo của Q là tổng âm của các phần tử khác trong mỗi hàng. Ta có \(\mu\) biểu thị tốc độ thay thế tức thời trung bình. 
+    
+\begin{equation}
+    \mu = \sum_{i} \pi_i \left( \sum_{j \neq i} q_{ij} \right)
+    \label{eq:placeholder_label}
+\end{equation}
+
+
+Q phải được điều chỉnh lại tỷ lệ sao cho tốc độ thay thế trung bình bằng một để duy trì định nghĩa chính xác về độ dài nhánh là số lần thay thế dự kiến trên mỗi vị trí (Q sau khi chỉnh lại \(\mu\) = 1 là ma trận bên trên). Với các tham số mô hình mô tả quá trình thay thế tức thời, xác suất quan sát trạng thái i ở một đầu của nhánh có độ dài t và trạng thái j ở đầu kia có thể thu được từ ma trận P, được tính như sau:
+
+\begin{equation}
+    \label{eq:placeholder_label}
+    \mathbf{P} = e^{\mathbf{Q}t}
+\end{equation}
+
+\subsubsection{Mở rộng mô hình}
+
+Sự không đồng nhất tốc độ giữa các vị trí Mô hình GTR cơ bản giả định rằng tất cả các vị trí trong trình tự đều tiến hóa với cùng một tốc độ trung bình. Tuy nhiên, trong thực tế sinh học, các áp lực chọn lọc làm cho một số vị trí tiến hóa nhanh hơn và một số khác chậm hơn. Để giải quyết điều này, chúng ta bổ sung hai tham số: $+I$ (Invariable sites) và $+G$ (Gamma distribution). Các vị trí không biến đổi ($+I$), ta có tham số $p_{inv}$ (hoặc $I$) đại diện cho tỷ lệ các vị trí trong trình tự được coi là không thể thay đổi. Xác suất chuyển đổi trạng thái tại một vị trí $t$ đơn lẻ được điều chỉnh như sau:
+\begin{equation}P_{ij}(t) = p_{inv} \delta_{ij} + (1 - p_{inv}) P_{ij}^{GTR}(t)
+\end{equation}
+$P_{ij}^{GTR}(t)$ là xác suất thu được từ ma trận $e^{Qt}$ của mô hình GTR cơ bản. 
+
+Phân phối Gamma ($+G$)Để mô hình hóa sự biến thiên tốc độ liên tục ở các vị trí còn lại, người ta thường sử dụng phân phối Gamma với tham số hình dạng $\alpha$ (Shape parameter). Giả định rằng tốc độ tiến hóa $r$ tuân theo phân phối Gamma có trung bình bằng 1, do đó phương sai là $1/\alpha$.Nếu $\alpha$ nhỏ: Sự biến thiên tốc độ lớn (nhiều vị trí rất chậm, một số rất nhanh).Nếu $\alpha$ lớn: Các vị trí có tốc độ tiến hóa gần như đồng đều nhau.Trong thực hành tính toán, phân phối Gamma liên tục được xấp xỉ bằng một phân phối rời rạc với $k$ nhóm tốc độ (thường là $k=4$ hoặc $k=8$) có trọng số bằng nhau. Khi đó, xác suất chuyển đổi trung bình được tính bằng tổng trọng số của các ma trận xác suất ứng với từng mức tốc độ:
+\begin{equation}
+P_{ij}(t) = \sum_{k=1}^K w_k \cdot e^{(r_k \mathbf{Q})t}
+\end{equation}
+Trong đó $r_k$ là tốc độ đại diện cho nhóm thứ $k$ và $w_k$ là xác suất của nhóm đó (thường là $1/K$).3. Mô hình kết hợp GTR+G+IKhi kết hợp cả hai thành phần trên, mô hình trở thành GTR+G+I, cho phép mô tả dữ liệu tiến hóa một cách toàn diện nhất. Xác suất quan sát sự thay đổi từ nucleotide $i$ sang $j$ sau khoảng thời gian $t$ là:
+\begin{equation}
+P_{ij}(t) = p_{inv} \delta_{ij} + (1 - p_{inv}) \sum_{k=1}^K w_k (e^{r_k \mathbf{Q} t})_{ij}
+\end{equation}
+Việc sử dụng mô hình này bổ sung thêm 2 tham số tự do: $p_{inv}$ (tỷ lệ vị trí không đổi) và $\alpha$ (độ biến thiên tốc độ của các vị trí còn lại), nâng tổng số tham số tự do của mô hình lên thành 10.
+
+
+\subsection{Tiêu chuẩn hợp lý nhất}
+
+Điều cơ bản của tiêu chí tối ưu hợp lý nhất là chọn cấu trúc liên kết khiến dữ liệu quan sát có xác suất cao nhất. Các phương pháp đơn giản nhất dựa trên cực tiểu biến đổi và dựa trên phương pháp khoảng cách có thể tính toán điểm số duy nhất của một cấu trúc liên kết T chỉ dựa trên dữ liệu. Ngược lại, việc tính toán điểm số xác suất của một cấu trúc liên kết đòi hỏi các giá trị độ dài nhánh cho tất cả (n-3) nhánh và một mô hình rõ ràng mô tả cách các trình tự tiến hóa theo thời gian. Định nghĩa \(B\) là một vectơ tham số chứa độ dài của tất cả các nhánh, và \(M\) là một vectơ tham số của mô hình tiến hóa. Độ dài nhánh thường được đo bằng đơn vị của số lượng thay thế dự kiến trên mỗi vị trí nucleotide. Số lượng phần tử trong \(M\) và định nghĩa của chúng thay đổi tùy thuộc vào mô hình nucleotide nào trong số nhiều mô hình nucleotide đã mô tả được chọn.
+
+Cụ thể hơn, tiêu chuẩn hợp lý nhất tìm cách tối đa hóa khả năng (\(L\)) của các biến \((T, B, M)\) với dữ liệu \(D\). Khả năng này tỷ lệ thuận với xác suất của D với các biến:
+
+% Requires: \usepackage{amsmath}
+% Requires: \usepackage{amsmath}
+\begin{equation}
+    \label{eq:placeholder_label}
+    L(T,M,B \mid D) \propto P(D \mid T,M,B)
+\end{equation}
+
+
+Thông thường, dự đoán cấu trúc cây \(T\) là mục tiêu chính của các phân tích phát sinh loài, với \(B\) và \(M\) được coi là "nuisance parameter". Tuy nhiên, vì giá trị hợp lý của bất kỳ cấu trúc nào cũng phụ thuộc vào giá trị của \(B\) và \(M\), nên các tham số này rất quan trọng ngay cả khi giá trị của chúng không đặc biệt quan trọng. Vì lý do này, khi so sánh điểm khả năng xảy ra của các cấu trúc, người ta thường dựa trên khả năng xảy ra tối đa của chúng. Đây đơn giản là điểm khả năng xảy ra lớn nhất có thể có của một cây \(T\) cụ thể trên tất cả các giá trị khả năng xảy ra của \(B\) và \(M\). Các giá trị của \(B\) và \(M\) tạo ra khả năng xảy ra tối đa sẽ được ký hiệu là $\hat{B}$ và $\hat{M}$, và biểu diễn các ước tính khả năng xảy ra tối đa của các tham số cho cây đó. Chúng ta không có phương pháp phân tích nào để giải $\hat{B}$ và $\hat{M}$ cho một cấu trúc,và do đó khả năng xảy ra tối đa được thu được bằng một trong số các kỹ thuật tối ưu hóa số như phương pháp Newton-Raphson hoặc phương pháp Brent.
+
+\subsection{Tính giá trị hợp lý}
+
+Đầu tiên, ta có câu trúc cây \(T\), vector tham số \(M\) và độ dài của các nhánh \(B\). Xét trường hợp cây có một đỉnh trong và hai lá. Chúng ta đi tính xác suất P(\(A_i\)|M, B) cho một vị trí trên đa trình tự sắp hàng A trên cây T có hai lá là \(X_1\) và \(X_2\) và \(l_1\), \(l2\) lần lượt là độ dài hai cạnh nối gốc với hái lá như hình :
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{oneroottwoleaf.png}\\
+\end{center}
+\caption{Cây có một nút gốc R và 2 nút lá X1 và X2}
+\end{figure}
+
+Giả sử nucleotide ở vị trí số một của \(X_1\) là A, nucleotide ở vị trí số một của \(X_2\) là C. Nucleotide tại gốc có thể nhận 4 giá trị là A, C, G, T do đó xác suất P(\(A_1\)|M, B) được tính là:
+
+% Requires: \usepackage{amsmath}
+\begin{multline}
+    P(A_1 \mid T, M) = \pi(A) P(A_1 \mid r = A, B, M) + \pi(C) P(A_1 \mid r = C, B, M) \\
+    + \pi(G) P(A_1 \mid r = G, B, M) + \pi(T) P(A_1 \mid r = T, B, M)
+    \label{eq:placeholder_label}
+\end{multline}
+
+Giả sử r = C, ta có P(\(A_1 \mid r = C, B, M\)) được hiểu là xác suất nếu nucleotide tại gốc là C và có dữ liệu đã cho sẵn và nó được tính như sau:
+
+% Requires: \usepackage{amsmath}
+\begin{equation}
+\begin{split}
+    P(A_{1} \mid r = C, B, M) &= P(x_{1} = A \mid r = C, B, M) \times P(x_{2} = C \mid r = C, B, M) \\
+    &= P_{AC}(l_{1} \mid M) \times P_{CC}(l_{2} \mid M)
+\end{split}
+\label{eq:probability_split}
+\end{equation}
+
+Trong đó \(P_{AC}(l_{1} \mid M)\) là xác suất có \(l\) thay thế từ nucleotide A đến nucleotide C.
+
+Tương tự, ta có thể tính được xác suất P(\(A_2 \mid B, M)\), ..., P(\(A_k \mid B, M)\) cho các vị trí 2, 3, ..., k trên đa sắp hàng A. Và giá trị hợp lý của cây T được tính như sau: 
+
+\begin{equation}
+    L(T) = P(A \mid B, M) = \prod_{i=1}^{k} P(A_{i} \mid B, M)
+\end{equation}
+
+Bây giờ, chúng ta xét phép tính xác suất cho một vị trí nucleotide đơn lẻ trên một cây tổng quát. Khi đó, xác suất vị trí bằng tổng xác suất của dữ liệu quan sát được trên tất cả các tổ hợp trạng thái có thể có tại các nút trong. Chúng ta có thể thấy được khi cây \(T\) có \(n\) là và \(n-1\) đỉnh trong thì số lượng trạng thái có thể lên đến $4^{n-1}$. Tuy nhiên, thuật toán Cắt nhánh do Felsenstein đề xuất tính P(\(A_i \mid B, M\) trong thời gian đa thức (cụ thể là O(n)). 
+
+Bản chất của thuật toán cắt nhánh là thuật toán quy hoạch động trên cây, tại mỗi nút trong chúng ta định nghĩa $L_{A}^{(i)}$ là hàm hợp lý có điều kiện tại nút \(i\) tức là nếu đỉnh trong tại nút i là A thì mức độ hợp lý với dữ liệu là bao nhiêu nếu chưa tính đến các đỉnh khác.
+
+Bài toán cơ sở, nếu \(i\) là một đỉnh trong, ta có:
+
+\begin{equation}
+    L_s^{(i)} = 
+    \begin{cases} 
+        1 & \text{nếu } s = \text{A (trạng thái quan sát)} \\
+        0 & \text{nếu } s \neq \text{A}
+    \end{cases}
+\end{equation}
+
+nếu dữ liệu bị thiếu hoặc bị gap thì toàn bộ sẽ bằng 1.
+
+Tại các nút trong, giả sử ta có nút trong \(k\) và có hai nút con là đỉnh i (bên trái) và đỉnh j (bên phải), với độ dài nhanh tương ứng là \(l_i\) và \(l_j\). Xác suất có điều kiện của nhánh k có nucleotide là s được tính bằng tích của hai nhánh con.
+
+\begin{equation}
+    L_s^{(k)} = \left( \sum_{x \in \{A,C,G,T\}} P_{sx}(t_i) L_x^{(i)} \right) \times \left( \sum_{y \in \{A,C,G,T\}} P_{sy}(t_j) L_y^{(j)} \right)
+    \label{eq:felsenstein_recursion}
+\end{equation}
+
+Chúng ta có giá trị hợp lý của cây là tổng của các giá trị hợp lý có điều kiện tại gốc, trọng số bởi tần số cân bằng ($\pi$) của từng nucleotide.
+
+
+\begin{equation}
+    L = \sum_{s \in \{A,C,G,T\}} \pi_s L_s^{(root)}
+\end{equation}
+
+
+
+\section{Tổng quan về Giải thuật Di truyền (Genetic Algorithm)}
+
+
+Giải thuật Di truyền (Genetic Algorithm - GA) là một kỹ thuật tối ưu hóa và tìm kiếm dựa trên nguyên lý chọn lọc tự nhiên và di truyền học. Đây là một nhánh của tính toán tiến hóa, thường được sử dụng để giải quyết các bài toán tối ưu hóa phức tạp bằng cách mô phỏng quá trình tiến hóa sinh học.
+
+\subsection{Các thành phần chính của GA}
+Một giải thuật di truyền tiêu chuẩn bao gồm các thành phần cơ bản sau:
+
+\begin{enumerate}
+    \item \textbf{Quần thể (Population):} Tập hợp các cá thể (giải pháp tiềm năng) cho bài toán. Mỗi cá thể được mã hóa dưới dạng một chuỗi (nhiễm sắc thể).
+    \item \textbf{Hàm thích nghi (Fitness Function):} Đánh giá độ tốt của mỗi cá thể. Cá thể có độ thích nghi cao hơn sẽ có cơ hội sống sót và sinh sản lớn hơn.
+    \item \textbf{Chọn lọc (Selection):} Quá trình chọn ra các cá thể tốt nhất từ quần thể hiện tại để làm cha mẹ cho thế hệ tiếp theo.
+    \item \textbf{Lai ghép (Crossover):} Kết hợp thông tin di truyền từ hai cá thể cha mẹ để tạo ra cá thể con mới, hy vọng kế thừa các đặc điểm tốt.
+    \item \textbf{Đột biến (Mutation):} Thay đổi ngẫu nhiên một hoặc nhiều giá trị trong nhiễm sắc thể của cá thể con để duy trì sự đa dạng di truyền và tránh rơi vào cực trị địa phương.
+\end{enumerate}
+
+\subsection{Quy trình hoạt động}
+Quá trình thực hiện của GA có thể được tóm tắt qua các bước sau:
+
+\newpage
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=.5]{GAdiagram.png}\\
+\end{center}
+\caption{Sơ đồ chung của thuật toán di truyền}
+\end{figure}
+
+
+\subsection{Kết luận}
+Giải thuật di truyền là một công cụ mạnh mẽ cho các bài toán tìm kiếm không gian lớn, nơi các phương pháp truyền thống có thể gặp khó khăn. Khả năng tìm kiếm toàn cục và tính linh hoạt làm cho nó trở thành lựa chọn phổ biến trong nhiều lĩnh vực như trí tuệ nhân tạo, kỹ thuật và kinh tế.
+
+
+\newpage
+
+
+\chapter{Thuật toán GARLI} % Chương 2
+
+\section{Giới thiệu}
+
+GARLI (Genetic Algorithm for Rapid Likelihood) là một thuật toán tìm kiếm theo phương pháp heuristic để thực hiện suy luận phát sinh loài theo tiêu chí hợp lý nhất. Thuật toán được phát triển với mục tiêu tăng cả tốc độ suy luận giá trị hợp lý nhất và kích thước của các tập dữ liệu có thể được phân tích một cách hợp lý. Điều này đạt được chủ yếu thông qua các cải tiến thuật toán cho phép tìm kiếm cấu trúc ML hiệu quả trong khi chỉ thực hiện một phần nhỏ tối ưu hóa số học.
+
+Phần mềm được phát triển bởi Joel Zwickl trong khuôn khổ chương trình tiến sĩ tại Đại học Texas ở Austin, và sau đó tiếp tục được cải tiến qua nhiều phiên bản. GARLI nhanh chóng trở thành một công cụ phổ biến trong suy luận phát sinh loài nhờ khả năng tìm kiếm heuristic hiệu quả so với nhiều phương pháp ML truyền thống
+
+\section{Tổng quan về thuật toán}
+
+Như trong các phương pháp thuật toán di truyền, mỗi giải pháp được gọi là một cá thể. Mỗi cá thể mã hóa một cấu trúc cây và một tập các tham số độ dài nhánh tương ứng cho cấu trúc liên kết đó và một tập hợp các tham số đại diện cho mô hình tiến hóa trình tự. Mô hình tiến hóa trình tự được triển khai là mô hình tổng quát thuận nghịch theo thời gian (GTR), với tính không đồng nhất tốc độ phân bố gamma rời rạc (Yang, 1994) và tỷ lệ ước tính của các vị trí không đổi (Gu và cộng sự, 1995). Hàm đánh giá (fitness) của của mỗi cá thể là một hàm số của điểm giá trị hợp lý của nó trên tập dữ liệu đã cho.
+
+
+\newpage 
+
+\newpage
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=.5]{Garli_overview.png}\\
+\end{center}
+\caption{Sơ đồ của thuật toán GARLI}
+\end{figure}
+
+Điều kiện khởi đầu của thuật toán bao gồm quần thể ban đầu của các giải pháp, và có thể do người dùng chỉ định hoặc được tạo ngẫu nhiên. Có hai thang thời gian quan trọng: thế hệ, bao gồm một vòng lặp sao chép, đột biến và đánh giá các cá thể, và khoảng thời gian cập nhật, bao gồm một trăm thế hệ. Vào cuối mỗi khoảng thời gian cập nhật, một số tham số GA nhất định được đánh giá và có thể được thay đổi một cách thích ứng. Các cá thể của thế hệ trước được gọi là cá thể cha mẹ, và các cá thể của thế hệ hiện tại được gọi là cá thể con cái. Con cái của thế hệ hiện tại trở thành cha mẹ của thế hệ tiếp theo. Tiêu chí dừng đề cập đến các điều kiện mà quá trình tìm kiếm sẽ kết thúc. Toàn bộ quá trình thực thi thuật toán từ đầu đến cuối được gọi là một lần chạy. Sơ đồ thuật toán được thể hiện trong Hình 2-1.
+
+
+\subsection{Khởi tạo ban đầu}
+
+Thuật toán bắt đầu bằng cách tạo ra một quần thể gồm các cá thể giống hệt nhau bằng cách sử dụng một cấu trúc cây do người dùng chỉ định hoặc sinh ngẫu nhiên. Độ dài nhánh bắt đầu và các tham số mô hình cũng có thể do người dùng khởi tạo. Khi cấu trúc cây bắt đầu không phải do khởi tạo, một cấu trúc liên kết sẽ được tạo ra, và tất cả các độ dài nhánh được đặt thành độ dài là 0,05. Nếu cấu trúc liên kết được khởi tạo mà không có độ dài nhánh, độ dài của tất cả các nhánh lại được đặt thành 0,05. Nếu các giá trị tham số mô hình không được khởi tạo, thuật toán sẽ suy ra các ước tính hợp lý từ dữ liệu cho các tham số tần số cơ sở cân bằng và tỷ lệ các vị trí bất biến, và sử dụng các giá trị mặc định cho các tham số tốc độ tương đối GTR và tham số \(\alpha\) của phân phối không đồng nhất tốc độ. Cụ thể, các tần số cơ sở quan sát được sử dụng làm giá trị bắt đầu của các tham số tần số cơ sở cân bằng. Các tham số tốc độ tương đối GTR được đặt tương đương với tỷ lệ tốc độ chuyển tiếp:chuyển đổi là 4:1 (tức là a = c = d = f = 1,0 và b = e = 4,0) và tham số \(\alpha\) của phân bố không đồng nhất tốc độ gamma được đặt thành 0,5.
+
+\subsection{Chu kỳ thế hệ}
+
+Các thế hệ không chồng chéo, nghĩa là tất cả các cá thể đều được thay thế hoàn toàn trong mỗi thế hệ. Số lượng cá thể trong quần thể, N, không đổi theo thời gian. Trong mỗi thế hệ, các bước sau được thực hiện:
+
+
+\begin{enumerate}
+    \item Độ thích nghi của mỗi cá thể được tính toán từ điểm số hợp lý bằng cách sử dụng hàm độ thích nghi. Chi tiết về hàm độ thích nghi trong phần 2.3.
+    \item Cá thể bố mẹ có độ thích nghi cao nhất được tự động chọn để lại k con, được gọi là các cá thể giữ lại. 
+    \item Bố mẹ của mỗi cá thể con trong số N-k con còn lại được chọn ngẫu nhiên,theo tỷ lệ độ thích nghi của cá thể bố mẹ. Tại thời điểm này, con cái là bản sao chính xác của bố mẹ chúng.
+    \item Mỗi con cái, ngoại trừ một cá thể giữ lại, sẽ được xử lý bằng một trong các toán tử đột biến được chọn ngẫu nhiên. Việc giữ lại một bản sao không bị đột biến của cá thể tốt nhất đảm bảo rằng nó không bao giờ bị mất do ngẫu nhiên (tức là bị mất di truyền).
+    \item Điểm số hợp lý của mỗi con cái bị đột biến được tính toán.
+\end{enumerate}
+
+
+\subsection{Khoảng cập nhật}
+
+Mỗi khoảng thời gian cập nhật là một chu kỳ gồm một trăm thế hệ. Trong mỗi khoảng thời gian cập nhật, thông tin về những thay đổi về mặt cấu trúc cây có lợi và hiệu suất của từng toán tử đột biến được lập bảng. Vào cuối mỗi khoảng thời gian cập nhật, thông tin được lưu trữ này được đánh giá và các tham số khác nhau có thể được thay đổi để ưu tiên những toán tử đã được chứng minh là có lợi trong các thế hệ gần đây. Quy trình này sẽ được thảo luận chi tiết trong phần 2.4
+
+
+\subsection{Điều kiện dừng}
+
+GARLI sử dụng một tiêu chí dừng tự động gồm ba điều kiện: 
+
+\begin{enumerate}
+    \item Không có đột biến topo nào tạo ra cải thiện đáng kể (tăng lnL lớn hơn 0.05) trong một số lượng lớn thế hệ.
+    \item Tổng mức tăng điểm số trong nhiều khoảng cập nhật nhỏ hơn một ngưỡng nhất định.
+    \item Tham số \(P_b\), điều khiển mức tối ưu độ dài nhánh, đã đạt giá trị tối thiểu.
+\end{enumerate}
+
+Ngoài ra, người dùng có thể yêu cầu dừng sau số thế hệ hoặc thời gian định trước, và tiêu chí này sẽ ghi đè lên tiêu chí tự động.
+
+Lưu ý rằng việc thoả mãn tiêu chí dừng không đảm bảo thuật toán đã tìm được nghiệm tối ưu toàn cục, mà chỉ cho thấy quá trình cải thiện trở nên khó khăn. Việc cho phép thuật toán chạy lâu hơn có thể dẫn đến nghiệm tốt hơn.
+\section{Fitness Function}
+
+Quy trình được sử dụng để xác định xác suất một cá thể được chọn làm cha mẹ dựa trên đô hợp lý của nó được gọi là hàm độ thích nghi. Việc lựa chọn một hàm độ thích nghi cụ thể là một yếu tố quan trọng đối với bất kỳ thuật toán di truyền nào. Việc lựa chọn hàm độ thích nghi quyết định mức độ tham lam của thuật toán tìm kiếm. Các hàm tỷ lệ độ thích nghi có độ lệch cao sẽ ưu tiên mạnh mẽ cá thể tốt nhất và dẫn đến các tìm kiếm leo dốc quyết liệt. Các hàm dựa trên thứ hạng có phân bổ xác suất sinh sản giữa các cá thể bất kể điểm số chính xác của chúng. Dưới đây là 
+
+
+\begin{enumerate}
+    \item Ta có điểm hợp lý của N cá thể, \(F = (LnL_1, LnL_2 , ..., LnL_N)\) sau đó ta tính \(LnL_{max}\) = max\(F\).
+    \item Sau đó ta tính điểm hợp lý tương đối theo công thức \(\Delta LnL_i\) = \(LnL_i\) - \(LnL_{max}\) 
+    \item Sau đó ta tính điểm fitness của từng cá thể là \(f_i\) = exp(\(s\Delta LnL_i\))
+    \item Cuối cùng xác suất được làm cha mẹ tỷ lệ thuận với hàm fitness của nó, dưới đây là công thức:
+\end{enumerate}
+
+% Requires: \usepackage{amsmath}
+\begin{equation}
+    p_i = \frac{f_i}{\sum_{j=1}^{N} f_j}
+    \label{eq:placeholder_label}
+\end{equation}
+
+Tham số cường độ lựa chọn s kiểm soát cường độ lựa chọn, độ nhạy của độ thích nghi với mức độ khác biệt trong lnL.
+
+\section{Các loại đột biến}
+\subsection{Đột biến cấu trúc cây}
+
+Trong một GA cho cây phát sinh, việc lựa chọn phân bố thích hợp của các đột biến topo là rất quan trọng vì không phải mọi thay đổi topo đều có khả năng cải thiện likelihood như nhau. Khi tiến gần đến vùng có fitness cao, các đột biến nhỏ thường hiệu quả hơn, trong khi các đột biến lớn giúp khám phá các đỉnh rời rạc trong không gian cấu trúc cây. Để định lượng kích thước của một đột biến, GARLI sử dụng khoảng cách Robinson–Foulds (RF), vốn phản ánh số phân hoạch thay đổi sau mỗi lần hoán đổi topo. Phân tích RF cho thấy rằng trong các cây có nhiều taxa, đa số các đột biến ngẫu nhiên đều rất lớn, còn các đột biến nhỏ như NNI lại cực kỳ hiếm — điều này gây khó khăn cho các chiến lược tìm kiếm ngẫu nhiên. Do đó, GARLI triển khai ba loại toán tử cấu trúc cây (NNI, limSPR, và full SPR) nhằm kiểm soát mức độ thay đổi của mỗi đột biến, đồng thời cho phép điều chỉnh động xác suất dùng từng loại toán tử để cân bằng giữa tinh chỉnh cục bộ và khám phá không gian cây một cách hiệu quả. Trong đó ta có:
+
+\begin{enumerate}
+    \item Toán tử NNI thay đổi rất ít phân hoạch, dùng để điều chỉnh khi đã gần với kết quả tối ưu.
+    \item Toán tử limSPR cho phép gán vào một nhánh nào đó sao cho khoảng cách Robinson-Foulds (RF) không được vượt quá một ngưỡng cho phép. Toán tử tác động vừa đủ mà vẫn giúp tăng được điểm hợp lý của cấu trúc cây.
+    \item Toán tử FullSpr cho phép gán vào tất cả các nhánh giúp tạo ra thay đổi lớn, giúp thoát khỏi các điểm tối ưu địa phương.
+\end{enumerate}
+
+\subsection{Đột biến tham số}
+
+Trong quá trình tìm kiếm tối ưu bằng Thuật toán Di truyền (GA), GARLI chọn ngẫu nhiên một trong 13 tham số để tiến hành đột biến. 12 tham số đầu tiên là các tham số mô hình GTR+I+\(\Gamma\) tiêu chuẩn: 6 tỷ lệ thay thế tương đối \(r_{ij}\), 4 tần số cân bằng cơ sở \(\pi_i\), tỷ lệ vị trí bất biến (I), và tham số hình dạng \(\alpha\) của phân phối Gamma.
+
+Tham số được chọn sẽ được nhân với một giá trị ngẫu nhiên lấy từ phân phối Gamma có giá trị trung bình bằng 1.0. Kỹ thuật này giúp tham số mới luôn dương và duy trì sự cân bằng về log-scale giữa các thay đổi tăng và giảm.
+
+Các tham số có ràng buộc sẽ được chuẩn hóa lại sau đột biến: Tần số cơ sở được đảm bảo tổng bằng 1.0, và một trong các tỷ lệ \(r_{ij}\) được cố định bằng 1.0, ràng buộc này đảm bảo ma trận tốc độ Q được chuẩn hóa, duy trì tính nhận dạng của mô hình để độ dài nhánh (t) đại diện cho số lần thay thế trung bình trên mỗi vị trí.
+
+Tham số thứ 13 là toán tử đột biến đặc biệt đối với tốc độ trung bình toàn cục (\(\mu\)). Toán tử này được thực thi một cách hiệu quả bằng cách nhân toàn bộ độ dài nhánh trên cây với một hệ số tỷ lệ ngẫu nhiên (cũng lấy từ phân phối Gamma). Toán tử \(\mu\) này rất quan trọng vì các thay đổi ở tham số \(\alpha\) hoặc tỷ lệ site bất biến (I) thường làm thay đổi ước tính về tốc độ tiến hóa, qua đó yêu cầu điều chỉnh đồng thời toàn bộ chiều dài nhánh theo cùng một hệ số tỷ lệ. Nếu không có toán tử \(\mu\) toàn cục này, Thuật toán Di truyền (GA) sẽ phải thực hiện nhiều bước đột biến độ dài nhánh nhỏ lẻ và độc lập để hiệu chỉnh lại sự thay đổi này, làm giảm đáng kể hiệu quả và tốc độ hội tụ của quá trình tìm kiếm tối ưu.
+
+\subsection{Đột biến độ dài nhánh}
+
+Tương tự như đột biến tham số mô hình, đột biến độ dài nhánh trong GARLI được thực hiện bằng cách nhân giá trị nhánh với một hệ số lấy từ phân bố gamma có trung bình bằng 1. Tuy nhiên, điểm khác biệt là một lần đột biến có thể ảnh hưởng đến nhiều nhánh cùng lúc. Số lượng nhánh được sửa đổi trong mỗi lần đột biến được lấy từ một phân bố nhị thức (binomial) với kỳ vọng M, sau đó các nhánh này được chọn ngẫu nhiên và mỗi nhánh được nhân với một hệ số gamma độc lập. Việc dùng phân bố nhị thức với mean M tương đương với việc đặt xác suất đột biến cho từng nhánh bằng M/(T−3), nhưng cách biểu diễn bằng mean M trực quan hơn vì số nhánh được kỳ vọng bị đột biến không phụ thuộc vào số lượng taxa.
+
+\subsection{Đột biến xác suất chọn đột biến}
+
+Trong quá trình tìm kiếm cây tối ưu bằng giải thuật di truyền, việc lựa chọn toán tử đột biến thích hợp tại mỗi bước đóng vai trò quyết định hiệu quả của quá trình tối ưu hóa. Các toán tử khác nhau—bao gồm thay đổi topology, thay đổi tham số mô hình tiến hóa và điều chỉnh độ dài nhánh—đều có mức độ tác động khác nhau đến giá trị hàm hợp lý và chi phí tính toán. Do đó, GARLI không sử dụng tần suất đột biến cố định, mà triển khai một cơ chế điều chỉnh xác suất mang tính thích nghi (adaptive operator weighting), giúp ưu tiên những toán tử đang mang lại cải thiện thực sự cho lời giải. Phần dưới đây trình bày cách GARLI xây dựng, cập nhật và sử dụng các trọng số toán tử này. 
+
+Để thực hiện cơ chế này, GARLI gán cho mỗi toán tử một “trọng số toán tử” (operator weight), và xác suất lựa chọn toán tử tại mỗi lần đột biến sẽ tỉ lệ thuận với trọng số đó. Mỗi trọng số được cấu thành từ hai thành phần: trọng số tiên nghiệm do người dùng thiết lập và trọng số hiệu năng phản ánh mức đóng góp thực tế của toán tử trong các thế hệ gần đây. Trọng số tiên nghiệm xác định xu hướng ban đầu của quá trình tìm kiếm, trong khi trọng số hiệu năng được cập nhật định kỳ nhằm ưu tiên các toán tử đang mang lại mức cải thiện điểm hợp lý lớn hơn. Cơ chế kết hợp này cho phép GARLI linh hoạt điều chỉnh quá trình đột biến theo trạng thái hiện tại của quần thể, đảm bảo sự cân bằng giữa khám phá không gian cây và tinh chỉnh các lời giải tiềm năng.
+
+Sau mỗi update interval, toàn bộ trọng số toán tử được tính lại dựa trên sự gia tăng điểm số tốt nhất của quần thể quy cho từng loại đột biến, từ đó điều chỉnh lại xác suất chọn toán tử một cách thích nghi. Nhờ vậy, những toán tử có lợi trong giai đoạn đầu (khi cần khám phá mạnh) có thể được thay thế bởi các toán tử tinh chỉnh hiệu quả hơn ở các giai đoạn cuối của quá trình tối ưu hóa.
+
+Ký hiệu i \in (\(t, m, b\)) lần lượt đại diện cho ba nhóm toán tử: thay đổi cấu trúc cây, tham số mô hình và độ dài nhánh. Trọng số khởi tạo của từng nhóm được ký hiệu là \(w_i\). Trong quá trình chạy, thuật toán GARLI theo dõi các toán tử thông qua hai giá trị:
+
+\begin{enumerate}
+    \item \(s_i\): tổng mức tăng độ hợp lý của cá thể mạnh nhất mà toán tử i đã đóng góp (chỉ tính các cải thiện, không tính các lần làm giản độ hợp lý).
+    \item \(n_i\): số lần toán tử i đã được sử dụng trong cùng khoảng thời gian quan sát
+\end{enumerate}
+ 
+Tỷ lệ \(s_i\)/\(n_i\) đại diện cho mức tăng độ hợp lý trung bình mà toán có khả năng mang lại khi nó thực sự cải thiện lời giải. Sau mỗi update interval, GARLI cập nhật xác suất chọn toán tử thông qua công thức:
+
+% Requires: \usepackage{amsmath}
+\begin{equation}
+    P_i = \frac{w_i + \dfrac{s_i}{n_i}}{\displaystyle \sum_{j \in \{t,m,b\}} \left( w_j + \frac{s_j}{n_j} \right)}
+    \label{eq:placeholder_label}
+\end{equation}
+
+Để tránh một toán tử nào đó bị loại hoàn toàn khỏi quá trình tìm kiếm, GARLI áp đặt thêm một ràng buộc thực nghiệm: xác suất của mỗi toán tử không bao giờ được phép xuống dưới 0.02, bất kể trọng số hiệu năng có thấp đến đâu.
+
+\section{Branch-Length Optimization}
+
+Trong khi tìm điểm hợp lý tối đa, mỗi cấu trúc cây được đánh giá bằng giá trị hợp lý của nó, vốn yêu cầu tối ưu hóa đầy đủ tất cả độ dài nhánh bằng các phương pháp số như Newton-Raphson hoặc Brent. Tuy nhiên, cách tiếp cận này có chi phí tính toán rất lơn, đặc biệt ta còn phải tìm kiếm với rất nhiều cấu trúc cây khác nhau. Do đó, điều quan trọng là tìm ra phương pháp đánh giá cấu trúc cây nhưng không cần tối ưu hóa đầy đủ, nhưng vẫn đảm bảo xếp hạng cấu trúc cây gần đúng như khi dùng likelihood tối ưu.
+
+Quan trọng là: trong tìm kiếm giá trị hợp lý cực đại, điều cần thiết không phải là giá trị hợp lý, mà là khả năng so sanh thứ hạng giữa các cấu trúc cây. Để làm được điều này ta định nghĩa các biến sau:
+
+\begin{enumerate}
+    \item $\hat{L}$ : đây là giá trị hợp lý cực đại của cấu trúc \(i\).
+    \item $\tilde{L}_i$ : đây là giá trị hợp lý ước lượng của cấu trúc \(i\).
+    \item $\Delta_{\mathrm{opt},i}$ = $\hat{L}$ - $\tilde{L}_i$ : phản ánh mức độ mà cấu trúc cây chưa được tối ưu hết.
+\end{enumerate}
+
+Ta không cần biết $\hat{L}$ chính xác, ta chỉ cần biết là cấu trúc cây nào tốt hơn. Do đó, ta có thể dùng một ước lượng giá trị hợp lý sao cho thỏa mãn:
+
+\[
+\tilde{L}_i > \tilde{L}_j \quad \text{if} \quad \hat{L}_i > \hat{L}_j \qquad \forall i,j.
+\]
+
+Khi so sánh 2 cấu trúc cây i và cấu trúc cây j, sai số trong việc xếp hạng là:
+
+\[
+E = (\Delta_{\mathrm{opt},i} - \Delta_{\mathrm{opt},j}).
+\]
+
+Nếu sai số E = 0, thứ hạng dựa trên $\tilde{L}_i$ cũng chính là thứ hạng dựa trên $\hat{L}$. Do đó mục tiêu của GARLI không phải tối ưu đến mức tuyệt đối, mà là giữ cho mức độ tối ưu hóa của các cấu trúc cây là tương đương nhau.
+
+Mặc dù $\Delta_{\mathrm{opt},i}$ phụ thuộc vào các tương tác phức tạp giữa các tham số độ dài nhánh, nhưng để bài toán trở nên đơn giản có thể xem nó như là tổng mức không tối ưu của từng nhánh:
+\[
+\Delta_{\mathrm{opt},i} \propto \sum_{b \in B_i} \Delta_{\mathrm{opt},b},
+\]
+lưu ý rằng đây chỉ là một xấp xỉ vì các tham số độ dài nhánh không độc lập.
+
+
+\section{Thuật toán tối ưu hóa độ dài nhánh trong GARLI}
+
+Trong quá trình tìm kiếm ML cây phát sinh, GARLI phải tối ưu đồng thời hình dạng cây, 
+độ dài nhánh và các tham số mô hình tiến hoá. Việc tối ưu hoá đầy đủ độ dài nhánh bằng 
+các phương pháp số như Newton–Raphson (NR) hoặc Brent rất tốn chi phí tính toán. 
+GARLI vì vậy sử dụng một cơ chế tối ưu hoá xấp xỉ, chỉ tối ưu các nhánh cần thiết 
+và dừng tối ưu khi độ cải thiện dự kiến đã đủ nhỏ. Phần này mô tả chi tiết cơ chế đó.
+
+\subsection{Tối ưu một nhánh bằng Newton–Raphson}
+
+Như trong phương trình (1.7), ta có có nút trong k và có hai nút con là đỉnh i (bên trái) và đỉnh j (bên phải), với độ dài nhánh tương ứng là \(t_i\) và \(t_j\), ta có giá trị hợp lý có điều kiện là:
+
+\begin{equation}
+    L_s^{(k)} = \left( \sum_{x \in \{A,C,G,T\}} P_{sx}(t_i) L_x^{(i)} \right) \times \left( \sum_{y \in \{A,C,G,T\}} P_{sy}(t_j) L_y^{(j)} \right)
+    \label{eq:felsenstein_recursion}
+\end{equation}
+
+ta có giá trị hợp lý tại một gốc k (không tính nút lá) bất kỳ là:
+
+% Requires: \usepackage{amsmath}
+
+
+% Requires: \usepackage{amsmath}
+\begin{equation}
+    L_{tree} = \sum_{x \in \{A,T,G,C\}} \pi_x L_x^{(k)}
+    \label{eq:placeholder_label}
+\end{equation}
+
+Giả sử ta muốn tối ưu độ dài của cạnh nối với nút con bên phải, ta lấy đạo hàm bậc 1 và bậc 2 theo biến \(t_i\)
+
+\[
+d_1 = \frac{\partial L_{tree}}{\partial t_i}, \qquad 
+d_2 = \frac{\partial^2 L_{tree}}{\partial t_i^2}.
+\]
+
+Phương pháp Newton–Raphson đưa ra ước lượng độ dài tối ưu:
+
+\[
+t_i' = t_i - \frac{d_1}{d_2}.
+\]
+
+Việc lặp lại phép tính này nhiều lần giúp giá trị hội tụ gần về optimum nếu $t$ ban đầu
+cách xa giá trị tối ưu.
+
+\subsection{Ước lượng mức cải thiện log-likelihood của từng nhánh}
+
+Để xác định một nhánh có cần tối ưu hay không, GARLI ước lượng mức tăng log-likelihood nếu nhánh đó được tối ưu hoá đầy đủ. Sử dụng khai triển Taylor bậc hai:
+
+% Requires: \usepackage{amsmath}
+\begin{equation}
+    \Delta \tilde{o}p_{t_i}^b = d1(t' - t) + \frac{d2}{2!}(t' - t)^2 = d1\!\left(-\frac{d1}{d2}\right) + \frac{d2}{2}\left(-\frac{d1}{d2}\right)^2 = -\frac{d1^2}{2d2}
+    \label{eq:placeholder_label}
+\end{equation}
+
+Giá trị này đại diện cho số đơn vị log-likelihood có thể tăng nếu nhánh $b$ được tối ưu. 
+Nếu $\tilde{\Delta}_{\mathrm{opt},b}$ lớn, nhánh còn rất chưa tối ưu và cần điều chỉnh; 
+ngược lại, nếu nhỏ hơn một ngưỡng nhất định thì có thể bỏ qua.
+
+\subsection{Ngưỡng \texorpdfstring{$P_b$}{Pb}: dừng tối ưu khi đã đủ tốt}
+
+GARLI định nghĩa một ngưỡng $P_b$ sao cho:
+
+\[
+\tilde{\Delta}_{\mathrm{opt},b} < P_b \;\Rightarrow\; 
+\text{không tối ưu nhánh vì đã gần tối ưu,}
+\]
+
+\[
+\tilde{\Delta}_{\mathrm{opt},b} > P_b \;\Rightarrow\;
+\text{tối ưu nhánh ngay}.
+\]
+
+Nhờ cơ chế này, chỉ những nhánh thực sự ảnh hưởng đến điểm số mới được tối ưu, giúp 
+tăng tốc đáng kể so với tối ưu đầy đủ.
+
+Ở thời điểm bắt đầu chạy, toàn bộ nhánh trên cây khởi tạo đều được tối ưu đến khi
+$\tilde{\Delta}_{\mathrm{opt}} < P_b$ để thiết lập trạng thái nền ổn định.
+
+\subsection{Ba pha tối ưu sau một phép biến đổi topology}
+
+Mỗi khi xảy ra một phép biến đổi topology (NNI, SPR, limSPR), việc tối ưu hoá độ dài 
+nhánh được chia thành ba pha:
+
+\subsubsection{Pha 1: Tối ưu hoá cục bộ}
+
+Các nhánh bị ảnh hưởng trực tiếp bởi phép biến đổi (ví dụ nhánh bị cắt-ra và gắn-vào mới 
+trong SPR) được tối ưu ngay. Các nhánh mới sinh ra được điều chỉnh độ dài khởi đầu 
+một cách hợp lý (ví dụ gán nhánh mới giá trị 0.05).
+
+\subsubsection{Pha 2: Lan truyền tối ưu}
+
+Sau khi tối ưu các nhánh gần nhất, thuật toán lan truyền tối ưu theo hướng xa dần khỏi
+vị trí biến đổi:
+
+\begin{itemize}
+  \item Nếu một nhánh có $\tilde{\Delta}_{\mathrm{opt}} > P_b$ thì tối ưu nó và 
+        tiếp tục lan sang hai nhánh ở đầu còn lại.
+  \item Nếu $\tilde{\Delta}_{\mathrm{opt}} < P_b$ thì dừng lan theo hướng đó.
+\end{itemize}
+
+Nhờ vậy, chỉ các vùng thực sự bị ảnh hưởng mới được tối ưu hoá – tránh việc tối ưu cả cây.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=.5]{SPR.png}\\
+\end{center}
+\caption{Minh hoạ tiến trình tối ưu hoá độ dài nhánh của GARLI sau một phép SPR. 
+Nhánh $b_1$ được cắt khỏi vị trí cũ và gắn lại lên nhánh $b_2$, tạo thành $b_{2a}$ và $b_{2b}$. 
+Tối ưu hoá được thực hiện trước tiên trên $b_1$, $b_{2a}$ và $b_{2b}$, sau đó lan truyền theo hướng 
+chỉ bởi các mũi tên. Việc lan truyền dừng lại tại nhánh có 
+$\tilde{\Delta}_{\mathrm{opt},b} < P_b$.}
+
+\end{figure}
+
+\subsubsection{Pha 3: Tinh chỉnh (refinement)}
+
+Vì tối ưu một nhánh có thể làm thay đổi optimum của nhánh khác, GARLI duyệt lại 
+một tập các nhánh cần kiểm tra. Những nhánh có độ dài thay đổi trong pha lan truyền 
+được đưa vào hàng đợi và được tối ưu lại nếu cần. Thuật toán tiếp tục cho đến khi 
+không còn nhánh nào cần tối ưu thêm.
+
+\subsection{Giảm dần ngưỡng \texorpdfstring{$P_b$}{Pb} khi tiến gần optimum}
+
+Khi tìm kiếm còn xa optimum, dễ dàng tìm thấy các cải thiện lớn về topology nên 
+không cần tối ưu nhánh quá chính xác. Vì vậy GARLI giữ $P_b$ lớn.
+
+Khi chạy lâu hơn và các cải thiện trở nên nhỏ, việc phân biệt các topology đòi hỏi 
+độ chính xác cao hơn. Do đó $P_b$ được giảm dần theo cấp số nhân khi trong nhiều 
+chu kỳ không xuất hiện một cải thiện topology nào.
+
+Khi $P_b$ đạt đến giá trị nhỏ nhất định, thuật toán coi như đã đạt độ tối ưu hoá đầy đủ 
+phục vụ tiêu chí dừng tự động.
+
+\chapter{Chạy thực nghiệm}
+
+\section{Bộ dữ liệu}
+Trong thực nghiệm này, chúng tôi sử dung hai bộ dữ liệu được dùng phổ biến trong đánh giá thuật toán suy luận cây phân loài bằng phương pháp cực đại giá trị hợp lý:
+
+\begin{enumerate}
+    \item RBCL: trình tự gen chloroplast(rbcl). Bộ dữ liệu này có kích thước là 500 taxa, độ dài sau khi đã sắp hàng của mỗi taxa là 1398 nucleotide.
+    \item Rana: bộ dữ liệu rRNA ty thể từ các loài ếch Bắc Mỹ. Bộ dữ liệu này có kích thước là 64, độ dài sau khi đã sắp hàng của mỗi taxa là 1975 nucleotide. 
+\end{enumerate}
+
+Hai bộ dữ liệu đại diện cho hai mức độ khó khác nhau, giúp quan sát rõ ràng cách các phần mềm với dữ liệu nhiều mẫu và dữ liệu ít mẫu.
+
+\section{Quy trình thực nghiệm}
+
+Chúng tôi tiến hành so sánh phần mềm GARLI với phần mềm PHYML. Các phân tích đều dùng chung một mô hình tiến hóa nhằm đảm bảo tính công bằng giữa các phần mềm.
+
+Đối với phần mềm GARLI, chúng tôi chạy 4 lần độc lập cho mỗi bộ dữ liệu, mỗi lần chạy bắt đầu từ một cấu trúc cây ngẫu nhiên. Đối với phần mềm PHYML, chúng tôi chỉ chạy 1 lần và sử dụng cây mặc định của chướng trình. Với mỗi lần chạy, chúng tôi lưu lại 2 thông số, đó là giá trị hợp lý và thời gian chạy (tính bằng phút).Dưới đây là kết quả, chúng tôi ghi lại được.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l c r r  r r}
+\toprule
+ & & \multicolumn{2}{c}{RBCL} & \multicolumn{2}{c}{Rana} \\
+Program & Topology & lnL & time (min) & lnL & time (min) \\
+\midrule
+GARLI & 1 & -85527.58 & 188.1 & -21827.70 & 5.7 \\
+GARLI & 2 & -85530.23 & 124.5 & -21827.76 & 6.05 \\
+GARLI & 3 & -85528.49 & 151.95 & -21827.71 & 6.86 \\
+GARLI & 4 & -85527.88 & 112.3 & -21827.76 & 6.66 \\
+PHYML & Provided & -85528.65 & 61.51 & -21827.70 & 1.26 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Phân tích kết quả}
+
+Đối với bộ dữ liệu RBCL, các lần chạy của GARLI hội tụ về các giá trị hợp lý gần nhau (từ -85527.58 đến -85530.23), cho thấy thuật toán di truyền tìm được lời giải ổn định.Tuy nhiên, thời gian chạy của GARLI khá lớn từ 112.3 đến 188.1 phút. PHYML đạt giá trị hợp lý là -85528.65, gần tương đương với GARLI, nhưng chỉ cần 61.51 phút, nhanh hơn gần 2 đến 3 lần.
+
+Đối với bộ dữ liệu Rana, tất cả lần chạy của GARLI đều cho giá trị hợp lý xấp xỉ nhau, thời gian chạy từ 5.7 đến 6.8 phút. PHYML đạt giá trị hợp lý bằng so với giá trị tốt nhất GARLI, tuy nhiên PHYML chỉ mất 1.26 phút.
+
+Từ kết quả chạy thực nghiệm, chúng tôi thấy rằng GARLI có khả năng tìm được cây tốt và ổn định, tuy nhiên thời gian chạy lớn trên các bộ dữ liệu trên trung bình. PHYML với tốc độ nhanh hơn trong khi chất lượng của giá trị hợp lý vẫn tương đương với GARLI.
+
+
+
+
+
+\newpage    
+
+
+\begin{thebibliography}{99} % Tài liệu tham khảo
+\addcontentsline{toc}{chapter}{{\bf Tài liệu tham khảo}\rm}
+
+\bibitem{Zwickl2006}
+D. J. Zwickl, {\it Genetic algorithm approaches for the phylogenetic analysis of large biological sequence datasets under the maximum likelihood criterion}, PhD Dissertation, The University of Texas at Austin, 2006.
+
+\bibitem{LesyVinhBioinfo}
+Lê Sỹ Vinh, {\it Giáo trình Nhập môn Tin sinh học}, Nhà xuất bản Đại học Quốc gia Hà Nội, 2024.
+
+\bibitem{ZwicklHolderGA}
+D. J. Zwickl and M. T. Holder, {\it A Genetic Algorithm for Maximum Likelihood Phylogeny Inference Using Nucleotide Sequence Data}, (Thông tin chi tiết về năm và tạp chí sẽ được bổ sung khi xác định đầy đủ).
+
+\bibitem{Phyml2003}
+S. Guindon and O. Gascuel, {\it A simple, fast, and accurate algorithm to estimate large phylogenies by maximum likelihood}, Systematic Biology, 52(2003), pp. 696–704.
+
+\bibitem{Tavare1986}
+S. Tavaré, {\it Some probabilistic and statistical problems in the analysis of DNA sequences}, Lectures on Mathematics in the Life Sciences, 17(1986), pp. 57–86.
+
+\bibitem{Yang1994}
+Z. Yang, {\it Maximum likelihood phylogenetic estimation from DNA sequences with variable rates over sites: Approximate methods}, Journal of Molecular Evolution, 39(1994), pp. 306–314.
+
+\bibitem{GarliGithub}
+J. Zwickl, {\it GARLI: Genetic Algorithm for Rapid Likelihood Inference}, source code available at: \url{https://github.com/zwickl/garli.git}.
+\end{thebibliography}
+
+
+\end{document}
