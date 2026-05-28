@@ -1,6 +1,6 @@
 # GDB cheat sheet, all basics command that took 20% of total but account for 80% of the usage
 
-## Basics
+## Basic commands
 - `run (r) arg1 arg2 <and pipe, output redirect, etc..>` so basically `run` is just replacement of the executable file name 
 - `start` run and break at main, quicker than `break main` then `run`
 - `break (b) <line number/function name>` set breakpoint
